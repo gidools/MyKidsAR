@@ -1,5 +1,5 @@
 <resources>
-	<string name="app_name">MaxstAR SDK</string>
+	<string name="app_name">MaxstAR My Kids</string>
 	<string name="maxstar_samples">MaxstAR My Kids</string>
 	<string name="image_tracker">Image Tracker</string>
 	<string name="marker_tracker">Marker Tracker</string>
