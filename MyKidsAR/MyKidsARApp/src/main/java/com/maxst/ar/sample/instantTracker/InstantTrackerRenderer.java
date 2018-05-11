@@ -34,13 +34,13 @@ class InstantTrackerRenderer implements Renderer {
 	private int surfaceWidth;
 	private int surfaceHeight;
 
-	private TexturedCube texturedCube;
 	private float posX;
 	private float posY;
 	private Activity activity;
-	private VideoQuad videoQuad2;
+	private VideoQuad videoQuad;
 
 	private BackgroundCameraQuad backgroundCameraQuad;
+	private static final float SCALE_FACTOR = 1.5f;
 
 	InstantTrackerRenderer(Activity activity) {
 		this.activity = activity;
@@ -60,8 +60,8 @@ class InstantTrackerRenderer implements Renderer {
 		backgroundCameraQuad.draw(image);
 
 		if (trackingResult.getCount() == 0) {
-			if (videoQuad2.getVideoPlayer().getState() == VideoPlayer.STATE_PLAYING) {
-				videoQuad2.getVideoPlayer().pause();
+			if (videoQuad.getVideoPlayer().getState() == VideoPlayer.STATE_PLAYING) {
+				videoQuad.getVideoPlayer().pause();
 			}
 			return;
 		}
@@ -72,15 +72,16 @@ class InstantTrackerRenderer implements Renderer {
 
 		GLES20.glEnable(GLES20.GL_DEPTH_TEST);
 
-		if (videoQuad2.getVideoPlayer().getState() == VideoPlayer.STATE_READY ||
-				videoQuad2.getVideoPlayer().getState() == VideoPlayer.STATE_PAUSE) {
-			videoQuad2.getVideoPlayer().start();
+		if (videoQuad.getVideoPlayer().getState() == VideoPlayer.STATE_READY ||
+				videoQuad.getVideoPlayer().getState() == VideoPlayer.STATE_PAUSE) {
+			videoQuad.getVideoPlayer().start();
 		}
-		videoQuad2.setProjectionMatrix(projectionMatrix);
-		videoQuad2.setTransform(trackable.getPoseMatrix());
-		videoQuad2.setTranslate(posX, posY, 0.0f);
-		videoQuad2.setScale(0.5f, -0.5f, 1.0f);
-		videoQuad2.draw();
+		videoQuad.setProjectionMatrix(projectionMatrix);
+		videoQuad.setTransform(trackable.getPoseMatrix());
+		videoQuad.setTranslate(posX, posY, -0.14f * SCALE_FACTOR);
+		videoQuad.setRotation(90, 1, 0, 0);
+		videoQuad.setScale(0.5f * SCALE_FACTOR, -0.28f * SCALE_FACTOR, 1.0f);
+		videoQuad.draw();
 	}
 
 	@Override
@@ -88,8 +89,6 @@ class InstantTrackerRenderer implements Renderer {
 
 		surfaceWidth = width;
 		surfaceHeight = height;
-
-		texturedCube.setScale(0.3f, 0.3f, 0.1f);
 
 		MaxstAR.onSurfaceChanged(width, height);
 	}
@@ -100,14 +99,10 @@ class InstantTrackerRenderer implements Renderer {
 
 		backgroundCameraQuad = new BackgroundCameraQuad();
 
-		texturedCube = new TexturedCube();
-		Bitmap bitmap = MaxstARUtil.getBitmapFromAsset("MaxstAR_Cube.png", activity.getAssets());
-		texturedCube.setTextureBitmap(bitmap);
-
-		videoQuad2 = new VideoQuad();
+		videoQuad = new VideoQuad();
 		VideoPlayer player = new VideoPlayer(activity);
-		videoQuad2.setVideoPlayer(player);
-		player.openVideo(Environment.getExternalStorageDirectory().getAbsolutePath() + "/video/kakaotalk_1525765685379.mp4");
+		videoQuad.setVideoPlayer(player);
+		player.openVideo("leean_dance.mp4");
 	}
 
 	void setTranslate(float x, float y) {
@@ -121,6 +116,6 @@ class InstantTrackerRenderer implements Renderer {
 	}
 
 	void destroyVideoPlayer() {
-		videoQuad2.getVideoPlayer().destroy();
+		videoQuad.getVideoPlayer().destroy();
 	}
 }

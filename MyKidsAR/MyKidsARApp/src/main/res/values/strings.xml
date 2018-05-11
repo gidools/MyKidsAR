@@ -1,6 +1,6 @@
 <resources>
-	<string name="app_name">MaxstAR My Kids</string>
-	<string name="maxstar_samples">MaxstAR My Kids</string>
+	<string name="app_name">My Kids AR</string>
+	<string name="maxstar_samples">My Kids AR</string>
 	<string name="image_tracker">Image Tracker</string>
 	<string name="marker_tracker">Marker Tracker</string>
 	<string name="instant_tracker">Instant Tracker</string>
@@ -24,7 +24,7 @@
 	<string name="white_balance">White Balance</string>
 	<string name="white_balance_auto">Auto</string>
 	<string name="white_balance_lock">Lock</string>
-	<string name="app_key">oi2tgW3UEoZrxJ6SEun+v3Pidb39SxMdb2O62LJFutw=</string>
+	<string name="app_key">ZNXBUwt8ImIejmnA/YOyLlbbDDjOoZLZrk0mqXZ1tiI=</string>
 	<string name="camera_resolution">Camera resolution</string>
 	<string name="sd_resolution">640x480</string>
 	<string name="hd_resolution">1280x720</string>

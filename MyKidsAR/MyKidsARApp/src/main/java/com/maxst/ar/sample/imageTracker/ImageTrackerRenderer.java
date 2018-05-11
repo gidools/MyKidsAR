@@ -32,8 +32,6 @@ class ImageTrackerRenderer implements Renderer {
 
 	public static final String TAG = ImageTrackerRenderer.class.getSimpleName();
 
-	private TexturedCube texturedCube;
-	private ColoredCube coloredCube;
 	private VideoQuad videoQuad;
 	private VideoQuad videoQuad2;
 
@@ -61,7 +59,7 @@ class ImageTrackerRenderer implements Renderer {
 		videoQuad2 = new VideoQuad();
 		player = new VideoPlayer(activity);
 		videoQuad2.setVideoPlayer(player);
-		player.openVideo(Environment.getExternalStorageDirectory().getAbsolutePath() + "/video/kakaotalk_1525765685379.mp4");
+		player.openVideo("leean_dance.mp4");
 	}
 
 	@Override
@@ -102,7 +100,8 @@ class ImageTrackerRenderer implements Renderer {
 				videoQuad.setProjectionMatrix(projectionMatrix);
 				videoQuad.setTransform(trackable.getPoseMatrix());
 				videoQuad.setTranslate(0.0f, 0.0f, 0.0f);
-				videoQuad.setScale(1, -2, 1.0f);
+				videoQuad.setRotation(90, 0, 0, 1.0F);
+				videoQuad.setScale(1.0f * 1.7f, -0.56f * 1.7f, 1.0f);
 				videoQuad.draw();
 			} else if (trackable.getName().equals("kids")) {
 				kidsDetected = true;
@@ -113,7 +112,7 @@ class ImageTrackerRenderer implements Renderer {
 				videoQuad2.setProjectionMatrix(projectionMatrix);
 				videoQuad2.setTransform(trackable.getPoseMatrix());
 				videoQuad2.setTranslate(0.0f, 0.0f, 0.0f);
-				videoQuad2.setScale(1, -1, 1.0f);
+				videoQuad2.setScale(0.95f, -0.56f, 1.0f);
 				videoQuad2.draw();
 			}
 		}

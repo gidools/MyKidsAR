@@ -4,3 +4,6 @@ Samples/build/
 Samples/MaxstARSample/build/
 Samples/local.properties
 *.iml
+MyKidsAR/MyKidsARApp/build/
+MyKidsAR/.idea/
+MyKidsAR/.gradle/
